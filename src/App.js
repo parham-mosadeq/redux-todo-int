@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Todos from './components/todos/Todos';
 import Layout from './components/layout';
-import CompletedTodos from './components/completeTodos/CompletedTodos';
+import CompletedTodos from './components/completedTodos/CompletedTodos';
 import UnfinishedTodos from './components/unfinishedTodos/UnfinishedTodos';
 const App = () => {
   return (
