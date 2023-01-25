@@ -4,14 +4,18 @@ import Todos from './components/todos/Todos';
 import Layout from './components/layout';
 import CompletedTodos from './components/completedTodos/CompletedTodos';
 import UnfinishedTodos from './components/unfinishedTodos/UnfinishedTodos';
+import { Provider } from 'react-redux';
+import { store } from './redux/rootReducer';
 const App = () => {
   return (
     <Layout>
-      <Routes>
-        <Route path='/' element={<Todos />} />
-        <Route path='/completed' element={<CompletedTodos />} />
-        <Route path='/unfinished' element={<UnfinishedTodos />} />
-      </Routes>
+      <Provider store={store}>
+        <Routes>
+          <Route path='/' element={<Todos />} />
+          <Route path='/completed' element={<CompletedTodos />} />
+          <Route path='/unfinished' element={<UnfinishedTodos />} />
+        </Routes>
+      </Provider>
     </Layout>
   );
 };

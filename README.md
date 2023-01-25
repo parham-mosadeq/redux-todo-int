@@ -10,6 +10,12 @@ In this project we are using the latest redux version
 yarn add tailwind
 ```
 
+- uuidv4
+
+```
+yarn add uuidv4
+```
+
 - redux
 
 ```
@@ -32,6 +38,12 @@ yarn add redux-logger
 
 ```
 yarn add redux-devtools-extension
+```
+
+- react-redux
+
+```
+yarn add react-redux
 ```
 
 #
