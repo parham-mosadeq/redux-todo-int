@@ -60,10 +60,7 @@ export const todosReducer = (state = initState, action) => {
       const findItemToFinish = state.todos.find((item) => {
         return item.id === action.payload;
       });
-      const s = state.todos.find((item) => {
-        return item.id === action.payload;
-      });
-      log(s);
+
       if (findItemToFinish.isDone) {
         findItemToFinish.isDone = false;
       } else {

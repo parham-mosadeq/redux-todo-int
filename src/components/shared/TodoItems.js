@@ -28,9 +28,19 @@ const TodoItems = ({ id, todoTxt, isDone, isEditing }) => {
           </div>
 
           {/* btn start */}
-          <div className='flex justify-center mx-3 my-4'>
-            <button onClick={() => dispatch(removeTodo(id))}>❌</button>
-            <button onClick={() => dispatch(finishedTodo(id))}>✔</button>
+          <div className='flex justify-between mx-3 my-4'>
+            <button
+              className='hover:scale-125'
+              onClick={() => dispatch(removeTodo(id))}
+            >
+              ❌
+            </button>
+            <button
+              className='hover:scale-125'
+              onClick={() => dispatch(finishedTodo(id))}
+            >
+              ✔
+            </button>
           </div>
           {/* btn end */}
 

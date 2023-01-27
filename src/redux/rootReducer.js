@@ -4,7 +4,7 @@ import { todosReducer } from './todos/todosReducer';
 
 export const store = configureStore({
   reducer: {
-    todos: todosReducer,
+    todosState: todosReducer,
   },
-  middleware: [],
+  middleware: [logger],
 });

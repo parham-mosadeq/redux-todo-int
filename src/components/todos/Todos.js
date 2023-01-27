@@ -2,13 +2,11 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import { uuid } from 'uuidv4';
 import { getTodo, addTodo } from '../../redux/todos/todosAction';
-import TodoItems from './TodoItems';
+import TodoItems from '../shared/TodoItems';
 const Todos = () => {
-  const todos = useSelector((state) => state.todos);
-  const isEditing = useSelector((state) => state.todos.isEditing);
-  const todosArr = useSelector((state) => state.todos.todos);
-  console.log(todos);
-  // console.log(todosArr);
+  const todos = useSelector((state) => state.todosState);
+  const isEditing = useSelector((state) => state.todosState.isEditing);
+  const todosArr = useSelector((state) => state.todosState.todos);
   const dispatch = useDispatch();
   return (
     <main className='min-h-screen mt-10 w-screen max-w-lg'>
@@ -41,7 +39,6 @@ const Todos = () => {
         <>
           {todosArr ? (
             todosArr.map((item) => (
-              // console.log(item.id)
               <span key={item.id}>
                 <TodoItems {...item} />
               </span>
