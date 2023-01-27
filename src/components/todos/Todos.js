@@ -5,7 +5,10 @@ import { getTodo, addTodo } from '../../redux/todos/todosAction';
 import TodoItems from './TodoItems';
 const Todos = () => {
   const todos = useSelector((state) => state.todos);
+  const isEditing = useSelector((state) => state.todos.isEditing);
   const todosArr = useSelector((state) => state.todos.todos);
+  console.log(todos);
+  // console.log(todosArr);
   const dispatch = useDispatch();
   return (
     <main className='min-h-screen mt-10 w-screen max-w-lg'>
@@ -31,7 +34,7 @@ const Todos = () => {
               className=' py-4 px-2 capitalize bg-blue-500 text-white 
           rounded-r-lg hover:cursor-pointer'
             >
-              add
+              {!isEditing ? 'add' : 'edit'}
             </button>
           </div>
         </form>

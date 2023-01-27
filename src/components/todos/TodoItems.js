@@ -8,7 +8,7 @@ import {
 const TodoItems = ({ id, todoTxt, isDone, isEditing }) => {
   const dispatch = useDispatch();
   return (
-    <div>
+    <div className={`${isEditing ? '' : ''}`}>
       {/* cart title start*/}
       <article className='my-5 w-full rounded-sm bg-slate-100 p-1 border-t-2  '>
         {/* wrapper */}
@@ -16,8 +16,8 @@ const TodoItems = ({ id, todoTxt, isDone, isEditing }) => {
           {/* info start */}
           <div>
             <p
-              onDoubleClick={() => editTodo(id)}
-              className={`w-full bg-stone-50 text-blue-800 capitalize text-center rounded-md
+              onDoubleClick={() => dispatch(editTodo(id))}
+              className={`w-full hover:cursor-pointer bg-stone-50 text-blue-800 capitalize text-center rounded-md
               ${
                 isDone ? 'line-through bg-gray-200' : 'bg-stone-50 no-underline'
               }

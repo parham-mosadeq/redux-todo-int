@@ -1,10 +1,11 @@
-// ! dynamic id
 import { v4 as uuidv4 } from 'uuid';
 // * initial state
 const initState = {
   todoTxt: '',
   // * todos array
   todos: [],
+
+  isEditing: false,
 };
 
 const { log, warn } = console;
@@ -19,7 +20,21 @@ export const todosReducer = (state = initState, action) => {
       };
     // * push it to specified array
     case 'ADD_TODO':
-      if (state.todoTxt.trim()) {
+      const findEdited = state.todos.filter((item) => item.isEditing === true);
+      if (state.isEditing && state.todoTxt.trim()) {
+        return {
+          ...state,
+          todoTxt: '',
+          todos: state.todos.map((item) => {
+            if (item.id === findEdited[0].id) {
+              const mod = { ...item, todoTxt: state.todoTxt, isEditing: false };
+              return mod;
+            }
+            return { ...state.todos, ...item };
+          }),
+          isEditing: false,
+        };
+      } else if (state.todoTxt.trim()) {
         state.todos.push({
           id: uuidv4(),
           todoTxt: state.todoTxt,
@@ -44,9 +59,11 @@ export const todosReducer = (state = initState, action) => {
     case 'DONE_TODO':
       const findItemToFinish = state.todos.find((item) => {
         return item.id === action.payload;
-        // log(item, 123);
-        // return { find };
       });
+      const s = state.todos.find((item) => {
+        return item.id === action.payload;
+      });
+      log(s);
       if (findItemToFinish.isDone) {
         findItemToFinish.isDone = false;
       } else {
@@ -54,6 +71,15 @@ export const todosReducer = (state = initState, action) => {
       }
 
       return { ...state, todos: [...state.todos] };
+
+    case 'EDIT_TODO':
+      const getItem = state.todos.filter((item) => item.id === action.payload);
+      getItem[0].isEditing = true;
+      return {
+        ...state,
+        todoTxt: getItem[0].todoTxt,
+        isEditing: true,
+      };
     default:
       return initState;
   }
